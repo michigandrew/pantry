@@ -3,7 +3,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       get 'inventory/index'
       post 'inventory/create'
-      get '/show/:id', to: 'inventory#show'
+      get '/item/:id', to: 'inventory#show'
       delete '/destroy/:id', to:'inventory#destroy'
     end
   end

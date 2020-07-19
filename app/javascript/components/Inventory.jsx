@@ -23,7 +23,6 @@ class Inventory extends React.Component {
     }
 
     render() {
-        console.log(this);
         const { inventories } = this.state;
         const allInventory = inventories.map((inventory, index) => (
           <div key={index} className="col-md-6 col-lg-4">
@@ -35,8 +34,8 @@ class Inventory extends React.Component {
               />
               <div className="card-body">
                 <h5 className="card-title">{inventory.name}</h5>
-                <Link to={`/inventory/${inventory.id}`} className="btn custom-button">
-                  View inventory
+                <Link to={`/item/${inventory.id}`} className="btn custom-button">
+                  View item
                 </Link>
               </div>
             </div>
@@ -63,8 +62,11 @@ class Inventory extends React.Component {
             <div className="py-5">
               <main className="container">
                 <div className="text-right mb-3">
-                  <Link to="/inventory" className="btn custom-button">
-                    Create New Inventory
+                  <Link to="/item" className="btn custom-button">
+                    Create New Item
+                  </Link>
+                  <Link to="/scan-item" className="btn custom-button">
+                    Scan in New Item
                   </Link>
                 </div>
                 <div className="row">

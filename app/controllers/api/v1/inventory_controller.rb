@@ -33,6 +33,7 @@ class Api::V1::InventoryController < ApplicationController
   end
 
   def inventory
+    print 'test'
     @inventory ||= Inventory.find(params[:id])
   end
 end
