@@ -4,9 +4,9 @@ import { Link } from "react-router-dom";
 class Item extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { item: { quantity: null, description: ''} };
+        this.state = { item: { available_quantity: null, description: ''} };
         this.addHtmlEntities = this.addHtmlEntities.bind(this);
-        this.deleteRecipe = this.deleteRecipe.bind(this);
+        this.decrementAvailableQuantity = this.decrementAvailableQuantity.bind(this);
     }
 
     componentDidMount() {
@@ -35,7 +35,7 @@ class Item extends React.Component {
           .replace(/&gt;/g, ">");
     }
 
-    deleteRecipe() {
+    decrementAvailableQuantity() {
       const {
         match: {
           params: { id }
@@ -57,7 +57,6 @@ class Item extends React.Component {
           }
           throw new Error("Network response was not ok.");
         })
-        .then(() => this.props.history.push("/inventory"))
         .catch(error => console.log(error.message));
     }
 
@@ -86,14 +85,14 @@ class Item extends React.Component {
                     </ul>
                   </div>
                   <div className="col-sm-12 col-lg-7">
-                    <h5 className="mb-2">Quantity</h5>
+                    <h5 className="mb-2">Available Quantity</h5>
                     <div>
-                        <p> {item.quantity} </p>
+                        <p> {item.available_quantity} </p>
                     </div>
                   </div>
                   <div className="col-sm-12 col-lg-2">
-                    <button type="button" className="btn btn-danger" onClick={this.deleteRecipe}>
-                      Delete Item
+                    <button type="button" className="btn btn-danger" onClick={this.decrementAvailableQuantity}>
+                      Reduce Available Quantity
                     </button>
                   </div>
                 </div>

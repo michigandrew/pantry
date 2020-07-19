@@ -22,18 +22,17 @@ class Api::V1::InventoryController < ApplicationController
   end
 
   def destroy
-    inventory&.destroy
-    render json: { message: 'Inventory removed!' }
+    inventory.decrement! :available_quantity
+    render json: { message: 'Available quantity lowered!' }
   end
 
   private
 
   def inventory_params
-    params.permit(:name, :image, :quantity, :description)
+    params.permit(:name, :image, :initial_quantity, :description)
   end
 
   def inventory
-    print 'test'
     @inventory ||= Inventory.find(params[:id])
   end
 end

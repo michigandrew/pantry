@@ -7,7 +7,8 @@ class NewItem extends React.Component {
         this.state = {
             name: "",
             description: "",
-            quantity: 1
+            initial_quantity: 1,
+            available_quantity: 1
         };
 
         this.onChange = this.onChange.bind(this);
@@ -28,15 +29,15 @@ class NewItem extends React.Component {
     onSubmit(event) {
         event.preventDefault();
         const url = "api/v1/inventory/create";
-        const { name, description, quantity } = this.state;
+        const { name, description, initial_quantity } = this.state;
 
-        if (name.length == 0 || description.length == 0 || quantity == 0 )
+        if (name.length == 0 || description.length == 0 || initial_quantity == 0 )
             return;
         
         const body = {
             name,
             description,
-            quantity
+            initial_quantity
         };
 
         const token = document.querySelector('meta[name="csrf-token"]').content;
@@ -64,7 +65,7 @@ class NewItem extends React.Component {
                 <div className="row">
                     <div className="col-sm-12 col-lg-6 offset-lg-3">
                         <h1 className="font-weight-normal mb-5">
-                            Add a new item to our awesome item collection.
+                            Add a new item to our pantry.
                         </h1>
                         <form onSubmit={this.onSubmit}>
                             <div className="form-group">
@@ -90,11 +91,11 @@ class NewItem extends React.Component {
                                   />
                             </div>
                             <div className="form-group">
-                                <label htmlFor="itemQuantity">Quantity</label>
+                                <label htmlFor="itemInitialQuantity">Quantity</label>
                                 <input
                                   type="number"
-                                  name="quantity"
-                                  id="itemQuantity"
+                                  name="initial_quantity"
+                                  id="itemInitialQuantity"
                                   className="form-control"
                                   required
                                   onChange={this.onChange}
